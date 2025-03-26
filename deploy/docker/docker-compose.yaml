@@ -1,7 +1,7 @@
 version: "3"
 x-common: &common
   networks:
-    - signoz-net
+    - captain-overlay-network
   restart: unless-stopped
   logging:
     options:
@@ -185,9 +185,7 @@ services:
       - --dsn=tcp://clickhouse:9000
       - --up=
     restart: on-failure
-networks:
-  signoz-net:
-    name: signoz-net
+
 volumes:
   clickhouse:
     name: signoz-clickhouse
@@ -195,3 +193,7 @@ volumes:
     name: signoz-sqlite
   zookeeper-1:
     name: signoz-zookeeper-1
+
+networks:
+  captain-overlay-network:
+    external: true
